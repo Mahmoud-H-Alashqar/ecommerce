@@ -95,10 +95,15 @@
     <div id="carouselId" class="carousel slide position-relative" data-bs-ride="carousel">
         <div class="carousel-inner" role="listbox">
             @foreach($sliders as $index => $slider)
-                <div class="carousel-item {{ $index == 0 ? 'active' : '' }} rounded">
+                {{--<div  class="carousel-item {{ $index == 0 ? 'active' : '' }} rounded">
                     <img width="600px" height="400px" src="{{ asset('storage/' . $slider->image) }}" class="img-fluid w-100 h-100 bg-secondary rounded" alt="Slide">
                     <a href="#" class="btn px-4 py-2 text-white rounded">{{$slider->category->name}}</a>
-                </div>
+                </div>--}}
+                <div class="carousel-item {{ $index == 0 ? 'active' : '' }} rounded">
+    <img width="600px" height="400px" src="{{ asset('storage/' . $slider->image) }}" class="bg-secondary rounded" alt="Slide">
+    <a href="#" class="btn px-4 py-2 text-white rounded">{{$slider->category->name}}</a>
+</div>
+
             @endforeach
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselId" data-bs-slide="prev">
