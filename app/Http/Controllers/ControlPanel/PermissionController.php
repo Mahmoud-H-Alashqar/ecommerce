@@ -15,13 +15,13 @@ class PermissionController extends Controller
         $permissions = Permission::paginate(10); 
 
        // dd($permissions);
-        return view('controlpanel.permissions.index', compact('permissions'));
+        return view('ControlPanel.permissions.index', compact('permissions'));
     }
 
     // عرض نموذج إنشاء صلاحية جديدة
     public function create()
     {
-        return view('controlpanel.permissions.create');
+        return view('ControlPanel.permissions.create');
     }
 
     // تخزين صلاحية جديدة
@@ -40,7 +40,7 @@ class PermissionController extends Controller
     // عرض صفحة تعديل صلاحية
     public function edit(Permission $permission)
     {
-        return view('controlpanel.permissions.edit', compact('permission'));
+        return view('ControlPanel.permissions.edit', compact('permission'));
     }
 
     // تحديث صلاحية
@@ -66,7 +66,7 @@ class PermissionController extends Controller
 {
     //dd($permission->name);
     // عرض تفاصيل الصلاحية في الـ View
-    return view('controlpanel.permissions.show', compact('permission'));
+    return view('ControlPanel.permissions.show', compact('permission'));
 }
 
  

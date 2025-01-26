@@ -15,7 +15,7 @@ use App\Http\Controllers\Controller;
        //  $users = User::all(); // جلب جميع المستخدمين
          $users = User::paginate(10); 
 
-         return view('controlpanel.users.index', compact('users'));
+         return view('ControlPanel.users.index', compact('users'));
      }
  
      // عرض نموذج إضافة مستخدم
@@ -23,7 +23,7 @@ use App\Http\Controllers\Controller;
      {
       //  dd("111");
          $roles = Role::all(); // جلب جميع الأدوار
-         return view('controlpanel.users.create', compact('roles'));
+         return view('ControlPanel.users.create', compact('roles'));
      }
  
      public function store(Request $request)
@@ -59,7 +59,7 @@ use App\Http\Controllers\Controller;
      public function edit(User $user)
      {
          $roles = Role::all(); // جلب جميع الأدوار
-         return view('controlpanel.users.edit', compact('user', 'roles'));
+         return view('ControlPanel.users.edit', compact('user', 'roles'));
      }
  
      // تحديث بيانات المستخدم
@@ -115,7 +115,7 @@ use App\Http\Controllers\Controller;
      // عرض تفاصيل المستخدم
      public function show(User $user)
      {
-         return view('controlpanel.users.show', compact('user'));
+         return view('ControlPanel.users.show', compact('user'));
      }
  
      // حذف المستخدم

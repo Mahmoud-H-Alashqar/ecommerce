@@ -13,14 +13,14 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::with('category')->paginate(10); 
-        return view('controlpanel.products.index', compact('products'));
+        return view('ControlPanel.products.index', compact('products'));
     }
 
     // عرض نموذج إضافة منتج جديد
     public function create()
     {
         $categories = Category::all();
-        return view('controlpanel.products.create', compact('categories'));
+        return view('ControlPanel.products.create', compact('categories'));
     }
 
     // تخزين منتج جديد
@@ -52,14 +52,14 @@ class ProductController extends Controller
     // عرض تفاصيل منتج معين
     public function show(Product $product)
     {
-        return view('controlpanel.products.show', compact('product'));
+        return view('ControlPanel.products.show', compact('product'));
     }
 
     // عرض نموذج تعديل منتج
     public function edit(Product $product)
     {
         $categories = Category::all();
-        return view('controlpanel.products.edit', compact('product', 'categories'));
+        return view('ControlPanel.products.edit', compact('product', 'categories'));
     }
 
     // تحديث منتج

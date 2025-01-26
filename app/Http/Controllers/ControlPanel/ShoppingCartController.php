@@ -13,14 +13,14 @@ class ShoppingCartController extends Controller
     {
         //dd("112");
         $shoppingcarts = ShoppingCart::with('cartItems')->paginate(10); 
-        return view('controlpanel.shoppingcarts.index', compact('shoppingcarts'));
+        return view('ControlPanel.shoppingcarts.index', compact('shoppingcarts'));
     }
     public function show($cartId)
     {
        // dd($cartId);
         // الحصول على السلة المحددة مع تفاصيل المنتجات داخل السلة
         $cart = ShoppingCart::with('cartItems.product')->findOrFail($cartId);
-        return view('controlpanel.shoppingcarts.show', compact('cart'));
+        return view('ControlPanel.shoppingcarts.show', compact('cart'));
     }
     public function updateQuantity(Request $request)
     {

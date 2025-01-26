@@ -12,12 +12,12 @@ class ContactadminController extends Controller
     {
         $contactadminExists = Contactadmin::exists();
          $contactadmins = Contactadmin::paginate(10); 
-         return view('controlpanel.contactadmins.index', compact('contactadmins','contactadminExists'));
+         return view('ControlPanel.contactadmins.index', compact('contactadmins','contactadminExists'));
     }
 
     public function create()
     {
-        return view('controlpanel.contactadmins.create');
+        return view('ControlPanel.contactadmins.create');
     }
 
     public function store(Request $request)
@@ -42,7 +42,7 @@ class ContactadminController extends Controller
     {
         $contactadmins = Contactadmin::findOrFail($id);
        // dd($contactadmins);
-        return view('controlpanel.contactadmins.edit', compact('contactadmins'));
+        return view('ControlPanel.contactadmins.edit', compact('contactadmins'));
     }
 
     public function update(Request $request, $id)
@@ -74,6 +74,6 @@ class ContactadminController extends Controller
     public function show($id)
     {
         $contactadmin = Contactadmin::findOrFail($id);
-        return view('controlpanel.contactadmins.show', compact('contactadmin'));
+        return view('ControlPanel.contactadmins.show', compact('contactadmin'));
     }
 }

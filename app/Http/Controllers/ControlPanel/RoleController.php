@@ -16,14 +16,14 @@ class RoleController extends Controller
         $roles = Role::paginate(10); 
 
       //  dd($roles);
-        return view('controlpanel.roles.index', compact('roles'));
+        return view('ControlPanel.roles.index', compact('roles'));
     }
 
     // عرض نموذج إنشاء دور جديد
     public function create()
     {
         $permissions = Permission::all();
-        return view('controlpanel.roles.create',compact('permissions'));
+        return view('ControlPanel.roles.create',compact('permissions'));
     }
 
     // تخزين دور جديد في قاعدة البيانات
@@ -52,7 +52,7 @@ class RoleController extends Controller
     {
         $permissions = Permission::all();
 
-        return view('controlpanel.roles.edit', compact('role', 'permissions'));
+        return view('ControlPanel.roles.edit', compact('role', 'permissions'));
     }
 
     // تحديث الدور في قاعدة البيانات
@@ -80,7 +80,7 @@ class RoleController extends Controller
     public function show(Role $role)
     {
         $role->load('permissions'); 
-        return view('controlpanel.roles.show', compact('role'));
+        return view('ControlPanel.roles.show', compact('role'));
     }
 
     // حذف الدور

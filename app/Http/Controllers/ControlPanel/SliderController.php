@@ -13,14 +13,14 @@ class SliderController extends Controller
     public function index()
     {
         $sliders = Slider::with('category')->paginate(10); 
-        return view('controlpanel.sliders.index', compact('sliders'));
+        return view('ControlPanel.sliders.index', compact('sliders'));
     }
 
     // عرض نموذج إضافة سلايدر جديد
     public function create()
     {
         $categories = Category::all();
-        return view('controlpanel.sliders.create', compact('categories'));
+        return view('ControlPanel.sliders.create', compact('categories'));
     }
 
     // تخزين سلايدر جديد
@@ -49,14 +49,14 @@ class SliderController extends Controller
     // عرض تفاصيل سلايدر معين
     public function show(Slider $slider)
     {
-        return view('controlpanel.sliders.show', compact('slider'));
+        return view('ControlPanel.sliders.show', compact('slider'));
     }
 
     // عرض نموذج تعديل سلايدر
     public function edit(Slider $slider)
     {
         $categories = Category::all();
-        return view('controlpanel.sliders.edit', compact('slider', 'categories'));
+        return view('ControlPanel.sliders.edit', compact('slider', 'categories'));
     }
 
     // تحديث سلايدر

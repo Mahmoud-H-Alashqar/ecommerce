@@ -14,7 +14,7 @@ class ContactController extends Controller
     {
         $contacts = Contact::paginate(10); 
         //dd($contacts);
-        return view('controlpanel.contacts.index', compact('contacts'));
+        return view('ControlPanel.contacts.index', compact('contacts'));
     }
 
  
@@ -23,7 +23,7 @@ class ContactController extends Controller
     public function show(Contact $contact)
     {
        // dd($contact);
-        return view('controlpanel.contacts.show', compact('contact'));
+        return view('ControlPanel.contacts.show', compact('contact'));
     }
 
     

@@ -355,7 +355,7 @@
 				<a href="{{ route('control_panel_dashboard.categories.index') }}" 
 				   class="nav-link {{ request()->routeIs('control_panel_dashboard.categories.index') ? 'active' : '' }}">
 					<i class="nav-icon bi bi-palette"></i>
-					<p>Categories1133</p>
+					<p>Categories</p>
 				</a>
 			</li>
 			  <li class="nav-item">

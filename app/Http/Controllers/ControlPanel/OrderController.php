@@ -18,7 +18,7 @@ class OrderController extends Controller
        
         $orders = Order::with('orderItems')->paginate(10); 
      //   dd($orders);
-        return view('controlpanel.orders.index', compact('orders'));
+        return view('ControlPanel.orders.index', compact('orders'));
     }
     public function show($ordertId)
     {
@@ -26,7 +26,7 @@ class OrderController extends Controller
         // الحصول على السلة المحددة مع تفاصيل المنتجات داخل السلة
         $order = Order::with('orderItems')->findOrFail($ordertId);
       //  dd($orderItems);
-        return view('controlpanel.orders.show', compact('order'));
+        return view('ControlPanel.orders.show', compact('order'));
     }
     
  
