@@ -13,12 +13,12 @@ class CategoryController extends Controller
        // $categories = Category::all();
         $categories = Category::paginate(10); 
       //  dd($categories);
-        return view('controlpanel.categories.index', compact('categories'));
+        return view('ControlPanel.categories.index', compact('categories'));
     }
 
     public function create()
     {
-        return view('controlpanel.categories.create');
+        return view('ControlPanel.categories.create');
     }
 
     public function store(Request $request)
@@ -39,7 +39,7 @@ class CategoryController extends Controller
     public function edit($id)
     {
         $category = Category::findOrFail($id);
-        return view('controlpanel.categories.edit', compact('category'));
+        return view('ControlPanel.categories.edit', compact('category'));
     }
 
     public function update(Request $request, $id)
@@ -69,6 +69,6 @@ class CategoryController extends Controller
     public function show($id)
     {
         $category = Category::findOrFail($id);
-        return view('controlpanel.categories.show', compact('category'));
+        return view('ControlPanel.categories.show', compact('category'));
     }
 }
