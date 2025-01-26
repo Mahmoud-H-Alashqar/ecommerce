@@ -3,10 +3,10 @@
   <!--begin::Head-->
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>AdminLTE v4 | Dashboard</title>
+    <title>AdminLTE 4 | Simple Tables</title>
     <!--begin::Primary Meta Tags-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="title" content="AdminLTE v4 | Dashboard" />
+    <meta name="title" content="AdminLTE 4 | Simple Tables" />
     <meta name="author" content="ColorlibHQ" />
     <meta
       name="description"
@@ -44,20 +44,6 @@
     <!--begin::Required Plugin(AdminLTE)-->
     <link rel="stylesheet" href="{{ asset('AdminLTE-master/dist/css/adminlte.css') }}" />
     <!--end::Required Plugin(AdminLTE)-->
-    <!-- apexcharts -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/apexcharts@3.37.1/dist/apexcharts.css"
-      integrity="sha256-4MX+61mt9NVvvuPjUWdUdyfZfxSB1/Rf9WtqRHgG5S0="
-      crossorigin="anonymous"
-    />
-    <!-- jsvectormap -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/jsvectormap@1.5.3/dist/css/jsvectormap.min.css"
-      integrity="sha256-+uGLJmmTKOqBr+2E6KDYs/NRsHxSkONXFHUL0fy2O/4="
-      crossorigin="anonymous"
-    />
   </head>
   <!--end::Head-->
   <!--begin::Body-->
@@ -249,10 +235,13 @@
                 </li>
                 <!--end::Menu Body-->
                 <!--begin::Menu Footer-->
+                <form method="POST" action="{{ route('logout') }}">
+                @csrf
                 <li class="user-footer">
                   <a href="#" class="btn btn-default btn-flat">Profile</a>
-                  <a href="#" class="btn btn-default btn-flat float-end">Sign out</a>
+                  <a  href="route('logout')" onclick="event.preventDefault();  this.closest('form').submit();" class="btn btn-default btn-flat float-end">Sign out</a>
                 </li>
+                </form>
                 <!--end::Menu Footer-->
               </ul>
             </li>
@@ -268,7 +257,7 @@
         <!--begin::Sidebar Brand-->
         <div class="sidebar-brand">
           <!--begin::Brand Link-->
-          <a href="./index.html" class="brand-link">
+          <a href="../index.html" class="brand-link">
             <!--begin::Brand Image-->
             <img
               src="{{ asset('AdminLTE-master/dist/assets/img/AdminLTELogo.png') }}"
@@ -293,221 +282,131 @@
               role="menu"
               data-accordion="false"
             >
-			{{--<li class="nav-item menu-open">
-                <a href="#" class="nav-link active">
-                  <i class="nav-icon bi bi-speedometer"></i>
-                  <p>
-                    Dashboard
-                    <i class="nav-arrow bi bi-chevron-right"></i>
-                  </p>
-                </a>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <a href="./index.html" class="nav-link active">
-                      <i class="nav-icon bi bi-circle"></i>
-                      <p>Dashboard v1</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="./index2.html" class="nav-link">
-                      <i class="nav-icon bi bi-circle"></i>
-                      <p>Dashboard v2</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="./index3.html" class="nav-link">
-                      <i class="nav-icon bi bi-circle"></i>
-                      <p>Dashboard v3</p>
-                    </a>
-                  </li>
-                </ul>
-              </li>--}}
-			     <li class="nav-item">
-				<a href="{{ route('control_panel_dashboard') }}" 
-				   class="nav-link {{ request()->routeIs('control_panel_dashboard') ? 'active' : '' }}">
-					<i class="nav-icon bi bi-palette"></i>
-					<p>Dashboard</p>
-				</a>
-			</li> 
-               <li class="nav-item">
-				<a href="{{ route('control_panel_dashboard.permissions.index') }}" 
-				   class="nav-link {{ request()->routeIs('control_panel_dashboard.permissions.index') ? 'active' : '' }}">
-					<i class="nav-icon bi bi-palette"></i>
-					<p>Permissions</p>
-				</a>
-			</li> 
-			<li class="nav-item">
-				<a href="{{ route('control_panel_dashboard.roles.index') }}" 
-				   class="nav-link {{ request()->routeIs('control_panel_dashboard.roles.index') ? 'active' : '' }}">
-					<i class="nav-icon bi bi-palette"></i>
-					<p>Roles</p>
-				</a>
-			</li> 
-			<li class="nav-item">
-				<a href="{{ route('control_panel_dashboard.users.index') }}" 
-				   class="nav-link {{ request()->routeIs('control_panel_dashboard.users.index') ? 'active' : '' }}">
-					<i class="nav-icon bi bi-palette"></i>
-					<p>Users</p>
-				</a>
-			</li>  
-		 
-			  <li class="nav-item">
-				<a href="{{ route('control_panel_dashboard.categories.index') }}" 
-				   class="nav-link {{ request()->routeIs('control_panel_dashboard.categories.index') ? 'active' : '' }}">
-					<i class="nav-icon bi bi-palette"></i>
-					<p>Categories</p>
-				</a>
-			</li>
-			  <li class="nav-item">
-				<a href="{{ route('control_panel_dashboard.products.index') }}" 
-				   class="nav-link {{ request()->routeIs('control_panel_dashboard.products.index') ? 'active' : '' }}">
-					<i class="nav-icon bi bi-palette"></i>
-					<p>Products</p>
-				</a>
-			</li>
-			  <li class="nav-item">
-				<a href="{{ route('control_panel_dashboard.shoppingcarts.index') }}" 
-				   class="nav-link {{ request()->routeIs('control_panel_dashboard.shoppingcarts.index') ? 'active' : '' }}">
-					<i class="nav-icon bi bi-palette"></i>
-					<p>Shopping Carts</p>
-				</a>
-			</li>
-			  <li class="nav-item">
-				<a href="{{ route('control_panel_dashboard.ordersadmin.index') }}" 
-				   class="nav-link {{ request()->routeIs('control_panel_dashboard.ordersadmin.index') ? 'active' : '' }}">
-					<i class="nav-icon bi bi-palette"></i>
-					<p>Orders</p>
-				</a>
-			</li>
-			  <li class="nav-item">
-				<a href="{{ route('control_panel_dashboard.contactadmin.index') }}" 
-				   class="nav-link {{ request()->routeIs('control_panel_dashboard.contactadmin.index') ? 'active' : '' }}">
-					<i class="nav-icon bi bi-palette"></i>
-					<p>Contact</p>
-				</a>
-			</li>
-			  <li class="nav-item">
-				<a href="{{ route('control_panel_dashboard.contactadmins.index') }}" 
-				   class="nav-link {{ request()->routeIs('control_panel_dashboard.contactadmins.index') ? 'active' : '' }}">
-					<i class="nav-icon bi bi-palette"></i>
-					<p>Contact Admin</p>
-				</a>
-			</li>
-			  <li class="nav-item">
-				<a href="{{ route('control_panel_dashboard.sliders.index') }}" 
-				   class="nav-link {{ request()->routeIs('control_panel_dashboard.sliders.index') ? 'active' : '' }}">
-					<i class="nav-icon bi bi-palette"></i>
-					<p>Slider</p>
-				</a>
-			</li>
+             <li class="nav-item menu-open">
+    <a href="{{ route('control_panel_dashboard') }}" class="nav-link">
+        <i class="nav-icon bi bi-speedometer"></i>
+        <p>
+            Dashboard
+        </p>
+    </a>
+</li>
 
-			{{--<li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="nav-icon bi bi-box-seam-fill"></i>
-                  <p>
-                    Widgets
-                    <i class="nav-arrow bi bi-chevron-right"></i>
-                  </p>
-                </a>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <a href="./widgets/small-box.html" class="nav-link">
-                      <i class="nav-icon bi bi-circle"></i>
-                      <p>Small Box</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="./widgets/info-box.html" class="nav-link">
-                      <i class="nav-icon bi bi-circle"></i>
-                      <p>info Box</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="./widgets/cards.html" class="nav-link">
-                      <i class="nav-icon bi bi-circle"></i>
-                      <p>Cards</p>
-                    </a>
-                  </li>
-                </ul>
-              </li>--}}
-              {{--<li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="nav-icon bi bi-clipboard-fill"></i>
-                  <p>
-                    Layout Options
-                    <span class="nav-badge badge text-bg-secondary me-3">6</span>
-                    <i class="nav-arrow bi bi-chevron-right"></i>
-                  </p>
-                </a>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <a href="./layout/unfixed-sidebar.html" class="nav-link">
-                      <i class="nav-icon bi bi-circle"></i>
-                      <p>Default Sidebar</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="./layout/fixed-sidebar.html" class="nav-link">
-                      <i class="nav-icon bi bi-circle"></i>
-                      <p>Fixed Sidebar</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="./layout/layout-custom-area.html" class="nav-link">
-                      <i class="nav-icon bi bi-circle"></i>
-                      <p>Layout <small>+ Custom Area </small></p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="./layout/sidebar-mini.html" class="nav-link">
-                      <i class="nav-icon bi bi-circle"></i>
-                      <p>Sidebar Mini</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="./layout/collapsed-sidebar.html" class="nav-link">
-                      <i class="nav-icon bi bi-circle"></i>
-                      <p>Sidebar Mini <small>+ Collapsed</small></p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="./layout/logo-switch.html" class="nav-link">
-                      <i class="nav-icon bi bi-circle"></i>
-                      <p>Sidebar Mini <small>+ Logo Switch</small></p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="./layout/layout-rtl.html" class="nav-link">
-                      <i class="nav-icon bi bi-circle"></i>
-                      <p>Layout RTL</p>
-                    </a>
-                  </li>
-                </ul>
-              </li>--}}
-             
-             
+			  
+		 
+			 <li class="nav-item">
+				<a href="#" class="nav-link {{ Request::routeIs('control_panel_dashboard.permissions.index') ? 'active' : '' }}" id="settingsMenu">
+					<i class="nav-icon bi bi-tree-fill"></i>
+					<p>
+						Settings
+						<i class="nav-arrow bi bi-chevron-right"></i>
+					</p>
+				</a>
+				<ul class="nav nav-treeview" id="settingsSubMenu" style="{{ Request::routeIs('control_panel_dashboard.permissions.index', 'control_panel_dashboard.roles.index', 'control_panel_dashboard.users.index') ? 'display: block;' : '' }}">
+					<li class="nav-item">
+						<a href="{{ route('control_panel_dashboard.permissions.index') }}" class="nav-link {{ Request::routeIs('control_panel_dashboard.permissions.index') ? 'active' : '' }}">
+							<i class="nav-icon bi bi-circle"></i>
+							<p>Permissions</p>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a href="{{ route('control_panel_dashboard.roles.index') }}" class="nav-link {{ Request::routeIs('control_panel_dashboard.roles.index') ? 'active' : '' }}">
+							<i class="nav-icon bi bi-circle"></i>
+							<p>Roles</p>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a href="{{ route('control_panel_dashboard.users.index') }}" class="nav-link {{ Request::routeIs('control_panel_dashboard.users.index') ? 'active' : '' }}">
+							<i class="nav-icon bi bi-circle"></i>
+							<p>Users</p>
+						</a>
+					</li>
+				</ul>
+	   </li>
+
+       
           
-             
-             
-              
+ 			  
+			  
+			    <li class="nav-item menu-open">
+				<a href="{{ route('control_panel_dashboard.categories.index') }}" class="nav-link active">
+					<i class="nav-icon bi bi-speedometer"></i>
+					<p>
+						Categories
+					</p>
+				</a>
+             </li>  
+			  
+			  
+			     <li class="nav-item menu-open">
+				<a href="{{ route('control_panel_dashboard.products.index') }}" class="nav-link active">
+					<i class="nav-icon bi bi-speedometer"></i>
+					<p>
+						Products
+					</p>
+				</a>
+             </li>
            
           
+             <li class="nav-item menu-open">
+				<a href="{{ route('control_panel_dashboard.shoppingcarts.index') }}" class="nav-link active">
+					<i class="nav-icon bi bi-speedometer"></i>
+					<p>
+          Shopping Carts
+					</p>
+				</a>
+             </li> 
+         
+          
+             <li class="nav-item menu-open">
+				<a href="{{ route('control_panel_dashboard.ordersadmin.index') }}" class="nav-link active">
+					<i class="nav-icon bi bi-speedometer"></i>
+					<p>
+          Orders
+					</p>
+				</a>
+             </li>  
+           
+           
+               <li class="nav-item menu-open">
+				<a href="{{ route('control_panel_dashboard.contactadmin.index') }}" class="nav-link active">
+					<i class="nav-icon bi bi-speedometer"></i>
+					<p>
+          Contact
+					</p>
+				</a>
+             </li> 
+			  
+			  
+			  
+			     <li class="nav-item menu-open">
+				<a href="{{ route('control_panel_dashboard.contactadmins.index') }}" class="nav-link active">
+					<i class="nav-icon bi bi-speedometer"></i>
+					<p>
+          Contact Admin
+					</p>
+				</a>
+             </li> 
+			  
+                <li class="nav-item menu-open">
+				<a href="{{ route('control_panel_dashboard.sliders.index') }}" class="nav-link active">
+					<i class="nav-icon bi bi-speedometer"></i>
+					<p>
+          Slider
+					</p>
+				</a>
+             </li> 
+           
             
-           
-          
-              
+             
+            
             </ul>
             <!--end::Sidebar Menu-->
           </nav>
         </div>
         <!--end::Sidebar Wrapper-->
       </aside>
-      <!--end::Sidebar-->
-	  
-	   @yield('content')
-	   
-	   
-	    <!--begin::Footer-->
+      @yield('content')
+
       <footer class="app-footer">
         <!--begin::To the end-->
         <div class="float-end d-none d-sm-inline">Anything you want</div>
@@ -565,7 +464,9 @@
         }
       });
     </script>
+    <!--end::OverlayScrollbars Configure-->
     <!--end::Script-->
+	
   </body>
   <!--end::Body-->
 </html>

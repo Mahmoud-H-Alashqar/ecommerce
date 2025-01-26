@@ -79,124 +79,215 @@ class CartController extends Controller
   }
  
      }
-     public function showCart()
-     {
-         if (Auth::check()) {
-             // إذا كان المستخدم مسجل دخول، نعرض السلة من قاعدة البيانات
-             $user = Auth::user();
-             // dd($user);
-             $shoppingCart = ShoppingCart::where('user_id', $user->id)
-                                         ->where('status', ShoppingCart::STATUS_OPEN)
-                                         ->first();
-             //  dd($shoppingCart);
-              // dd(session()->get('cart', []));
-             // dd(count($shoppingCart->cartItems));
-              // if (empty(session()->get('cart', [])))  
-              // if (empty(session()->get('cart', [])) && count($shoppingCart->cartItems) == 0) 
-               if (empty(session()->get('cart', [])) && $shoppingCart == null )  
+//      public function showCart()
+//      {
+//          if (Auth::check()) {
+//              // إذا كان المستخدم مسجل دخول، نعرض السلة من قاعدة البيانات
+//              $user = Auth::user();
+//               // dd($user);
+//              $shoppingCart = ShoppingCart::where('user_id', $user->id)
+//                                          ->where('status', ShoppingCart::STATUS_OPEN)
+//                                          ->first();
+//               // dd($shoppingCart);
+//               // dd(session()->get('cart', []));
+//               // dd(count($shoppingCart->cartItems));
+//               // if (empty(session()->get('cart', [])))  
+//               // if (empty(session()->get('cart', [])) && count($shoppingCart->cartItems) == 0) 
+//                if (empty(session()->get('cart', [])) && $shoppingCart == null )  
  
-                 {
-                //  dd("12");
-                return redirect()->route('shop');
-                }
+//                  {
+//                 //  dd("12");
+//                 return redirect()->route('shop');
+//                 }
                
-              // إذا كانت السلة موجودة
-             if ($shoppingCart) {
-                //  $cartItems = $shoppingCart->cartItems()->with('product')->get();
-                 //حتى يدمج مع الي بسلة
-            //  $shoppingCart = ShoppingCart::where('user_id', $user->id)
-            // ->where('status', ShoppingCart::STATUS_OPEN)
-            // ->first();
-             $cartSession = session()->get('cart', []);
-           // dd($cartSession);
-                 // إذا كانت هناك منتجات في الجلسة، نقوم بإضافتها إلى قاعدة البيانات
-                 if (!empty($cartSession)) {
-                   // dd("12");
-                    // $shoppingCart = ShoppingCart::create([
-                    //     'user_id' => $user->id,
-                    //     'status' => ShoppingCart::STATUS_OPEN,
-                    // ]);
-                     foreach ($cartSession as $item) {
-                         CartItem::create([
-                             'shopping_cart_id' => $shoppingCart->id,
-                             'product_id' => $item['id'],
-                             'quantity' => $item['quantity'],
-                             'unit_price' => $item['price'],
-                             'total_price' => $item['price'] * $item['quantity'],
-                         ]);
-                     }
-                      // مسح السلة من الجلسة بعد نقلها إلى قاعدة البيانات
-                     session()->forget('cart');
-                 }
-                 $cartItems = $shoppingCart->cartItems()->with('product')->get();
-               //  dd($cartItems);
-             } else {
-                 $cartItems = [];
-                // dd($cartItems);
-                // $cartItems = array_merge($cartItems->toArray(), session()->get('cart', []));
-                 //حتى يدمج مع الي بسلة
-                 if (!empty(session()->get('cart', []))) {
-                 // $cartItems = array_merge($cartItems, session()->get('cart', []));
-                  //dd($cartItems);
-                  $cartSession = session()->get('cart', []);
-                  if (!empty($cartSession)) {
-                    // dd("12");
-                     $shoppingCart = ShoppingCart::create([
-                         'user_id' => $user->id,
-                         'status' => ShoppingCart::STATUS_OPEN,
-                     ]);
-                      foreach ($cartSession as $item) {
-                          CartItem::create([
-                              'shopping_cart_id' => $shoppingCart->id,
-                              'product_id' => $item['id'],
-                              'quantity' => $item['quantity'],
-                              'unit_price' => $item['price'],
-                              'total_price' => $item['price'] * $item['quantity'],
-                          ]);
-                      }
-                       // مسح السلة من الجلسة بعد نقلها إلى قاعدة البيانات
-                      session()->forget('cart');
-                  }
-                  $cartItems = $shoppingCart->cartItems()->with('product')->get();
-                 }
-             }
+//               // إذا كانت السلة موجودة
+//              if ($shoppingCart) {
+//                 //  $cartItems = $shoppingCart->cartItems()->with('product')->get();
+//                  //حتى يدمج مع الي بسلة
+//             //  $shoppingCart = ShoppingCart::where('user_id', $user->id)
+//             // ->where('status', ShoppingCart::STATUS_OPEN)
+//             // ->first();
+//              $cartSession = session()->get('cart', []);
+//            // dd($cartSession);
+//                  // إذا كانت هناك منتجات في الجلسة، نقوم بإضافتها إلى قاعدة البيانات
+//                  if (!empty($cartSession)) {
+//                    // dd("12");
+//                     // $shoppingCart = ShoppingCart::create([
+//                     //     'user_id' => $user->id,
+//                     //     'status' => ShoppingCart::STATUS_OPEN,
+//                     // ]);
+//                      foreach ($cartSession as $item) {
+//                          CartItem::create([
+//                              'shopping_cart_id' => $shoppingCart->id,
+//                              'product_id' => $item['id'],
+//                              'quantity' => $item['quantity'],
+//                              'unit_price' => $item['price'],
+//                              'total_price' => $item['price'] * $item['quantity'],
+//                          ]);
+//                      }
+//                       // مسح السلة من الجلسة بعد نقلها إلى قاعدة البيانات
+//                      session()->forget('cart');
+//                  }
+//                  $cartItems = $shoppingCart->cartItems()->with('product')->get();
+//                //  dd($cartItems);
+//              } else {
+//                  $cartItems = [];
+//                 // dd($cartItems);
+//                 // $cartItems = array_merge($cartItems->toArray(), session()->get('cart', []));
+//                  //حتى يدمج مع الي بسلة
+//                  if (!empty(session()->get('cart', []))) {
+//                  // $cartItems = array_merge($cartItems, session()->get('cart', []));
+//                   //dd($cartItems);
+//                   $cartSession = session()->get('cart', []);
+//                   if (!empty($cartSession)) {
+//                     // dd("12");
+//                      $shoppingCart = ShoppingCart::create([
+//                          'user_id' => $user->id,
+//                          'status' => ShoppingCart::STATUS_OPEN,
+//                      ]);
+//                       foreach ($cartSession as $item) {
+//                           CartItem::create([
+//                               'shopping_cart_id' => $shoppingCart->id,
+//                               'product_id' => $item['id'],
+//                               'quantity' => $item['quantity'],
+//                               'unit_price' => $item['price'],
+//                               'total_price' => $item['price'] * $item['quantity'],
+//                           ]);
+//                       }
+//                        // مسح السلة من الجلسة بعد نقلها إلى قاعدة البيانات
+//                       session()->forget('cart');
+//                   }
+//                   $cartItems = $shoppingCart->cartItems()->with('product')->get();
+//                  }
+//              }
 
-//حل البيق
-if($shoppingCart){
+// //حل البيق
+// if($shoppingCart){
 
 
-             $cartItems =   $cartitem = CartItem::where('shopping_cart_id',$shoppingCart->id)->get();
-             $totalPrice = 0;
-foreach ($cartItems as $cartItem) {
-$totalPrice += $cartItem->quantity * $cartItem->unit_price;
+//              $cartItems =   $cartitem = CartItem::where('shopping_cart_id',$shoppingCart->id)->get();
+//              $totalPrice = 0;
+// foreach ($cartItems as $cartItem) {
+// $totalPrice += $cartItem->quantity * $cartItem->unit_price;
+// }
+// }else{
+//     return redirect()->route('shop');
+// }
+// //حل البيق
+
+//          } else {
+//              // إذا لم يكن المستخدم مسجل دخول، نعرض السلة من الجلسة
+//              $cartItems = session()->get('cart', []);
+//              $totalPrice = 0;
+
+// // التكرار عبر السلة لحساب المجموع لكل منتج
+// foreach ($cartItems as $product) {
+//     // حساب المجموع لهذا المنتج (السعر × الكمية)
+//     $totalPrice += $product['price'] * $product['quantity'];
+// }
+
+
+//          }
+//               // إذا كانت السلة من الجلسة غير فارغة، ندمجها مع السلة من قاعدة البيانات
+//     // if (!empty($cartItems) && session()->has('cart')) {
+//     //     // دمج السلة من الجلسة مع السلة من قاعدة البيانات
+//     //     $cartItems = array_merge($cartItems->toArray(), session()->get('cart', []));
+//     // }
+//      // dd($cartItems);
+// 	  // dd(count($cartItems));
+//       $countcartItems = count($cartItems) ; 
+
+//          // عرض السلة في الفيو
+//          return view('website.frontend.cart', compact('cartItems','totalPrice','countcartItems'));
+//      }
+//مع حساب لكميات 
+public function showCart()
+{
+    if (Auth::check()) {
+        // إذا كان المستخدم مسجل دخول، نعرض السلة من قاعدة البيانات
+        $user = Auth::user();
+        $shoppingCart = ShoppingCart::where('user_id', $user->id)
+                                    ->where('status', ShoppingCart::STATUS_OPEN)
+                                    ->first();
+
+        // إذا كانت السلة فارغة أو لا توجد سلة للمستخدم، نقوم بإعادة التوجيه إلى صفحة المتجر
+        if (empty(session()->get('cart', [])) && $shoppingCart == null ) {
+            return redirect()->route('shop');
+        }
+
+        // إذا كانت السلة موجودة في قاعدة البيانات
+        if ($shoppingCart) {
+            $cartSession = session()->get('cart', []);
+
+            // إذا كانت هناك منتجات في الجلسة، نقوم بإضافتها إلى قاعدة البيانات
+            if (!empty($cartSession)) {
+                foreach ($cartSession as $item) {
+                    CartItem::create([
+                        'shopping_cart_id' => $shoppingCart->id,
+                        'product_id' => $item['id'],
+                        'quantity' => $item['quantity'],
+                        'unit_price' => $item['price'],
+                        'total_price' => $item['price'] * $item['quantity'],
+                    ]);
+                }
+                // مسح السلة من الجلسة بعد نقلها إلى قاعدة البيانات
+                session()->forget('cart');
+            }
+
+            // استرجاع العناصر من السلة في قاعدة البيانات
+            $cartItems = $shoppingCart->cartItems()->with('product')->get();
+        } else {
+            $cartItems = [];
+            // إذا كانت السلة فارغة في قاعدة البيانات، ندمج السلة من الجلسة مع قاعدة البيانات
+            if (!empty(session()->get('cart', []))) {
+                $cartSession = session()->get('cart', []);
+                if (!empty($cartSession)) {
+                    $shoppingCart = ShoppingCart::create([
+                        'user_id' => $user->id,
+                        'status' => ShoppingCart::STATUS_OPEN,
+                    ]);
+                    foreach ($cartSession as $item) {
+                        CartItem::create([
+                            'shopping_cart_id' => $shoppingCart->id,
+                            'product_id' => $item['id'],
+                            'quantity' => $item['quantity'],
+                            'unit_price' => $item['price'],
+                            'total_price' => $item['price'] * $item['quantity'],
+                        ]);
+                    }
+                    session()->forget('cart');
+                }
+                // استرجاع العناصر من السلة في قاعدة البيانات
+                $cartItems = $shoppingCart->cartItems()->with('product')->get();
+            }
+        }
+
+        // حساب المجموع الكلي للأسعار وحساب العدد الإجمالي مع الكميات
+        $totalPrice = 0;
+        $countcartItems = 0; // العدد الكلي للمنتجات مع الكميات
+
+        foreach ($cartItems as $cartItem) {
+            $totalPrice += $cartItem->quantity * $cartItem->unit_price;
+            $countcartItems += $cartItem->quantity;  // إضافة الكمية لكل منتج
+        }
+
+    } else {
+        // إذا لم يكن المستخدم مسجل دخول، نعرض السلة من الجلسة
+        $cartItems = session()->get('cart', []);
+        $totalPrice = 0;
+        $countcartItems = 0;
+
+        // التكرار عبر السلة لحساب المجموع لكل منتج
+        foreach ($cartItems as $product) {
+            $totalPrice += $product['price'] * $product['quantity'];
+            $countcartItems += $product['quantity'];  // إضافة الكمية لكل منتج
+        }
+    }
+
+    // عرض السلة في الفيو
+    return view('website.frontend.cart', compact('cartItems', 'totalPrice', 'countcartItems'));
 }
-}else{
-    return redirect()->route('shop');
-}
-//حل البيق
 
-         } else {
-             // إذا لم يكن المستخدم مسجل دخول، نعرض السلة من الجلسة
-             $cartItems = session()->get('cart', []);
-             $totalPrice = 0;
-
-// التكرار عبر السلة لحساب المجموع لكل منتج
-foreach ($cartItems as $product) {
-    // حساب المجموع لهذا المنتج (السعر × الكمية)
-    $totalPrice += $product['price'] * $product['quantity'];
-}
-
-
-         }
-              // إذا كانت السلة من الجلسة غير فارغة، ندمجها مع السلة من قاعدة البيانات
-    // if (!empty($cartItems) && session()->has('cart')) {
-    //     // دمج السلة من الجلسة مع السلة من قاعدة البيانات
-    //     $cartItems = array_merge($cartItems->toArray(), session()->get('cart', []));
-    // }
-    // dd($cartItems);
-         // عرض السلة في الفيو
-         return view('website.frontend.cart', compact('cartItems','totalPrice'));
-     }
       public function updateCart(Request $request)
      {
          // التحقق من البيانات

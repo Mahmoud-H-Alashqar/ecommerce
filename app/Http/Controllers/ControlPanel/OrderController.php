@@ -9,6 +9,7 @@ use App\Models\OrderItem;
 use App\Models\ShoppingCart;
 use App\Models\Product;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -90,7 +91,86 @@ $shoppingCartId = $cartItem['shopping_cart_id'];
      public function success()
      {
        // dd("hi");  
-        return view('website.frontend.success');
+               //عدد السلة 
+if (Auth::check()) {
+  // إذا كان المستخدم مسجل دخول، نعرض السلة من قاعدة البيانات
+  $user = Auth::user();
+  $shoppingCart = ShoppingCart::where('user_id', $user->id)
+                              ->where('status', ShoppingCart::STATUS_OPEN)
+                              ->first();
+
+  // if (empty(session()->get('cart', [])) && $shoppingCart == null ) {
+  //     return redirect()->route('shop');
+  // }
+
+  if ($shoppingCart) {
+      $cartSession = session()->get('cart', []);
+      // إذا كانت هناك منتجات في الجلسة، نقوم بإضافتها إلى قاعدة البيانات
+      if (!empty($cartSession)) {
+          foreach ($cartSession as $item) {
+              CartItem::create([
+                  'shopping_cart_id' => $shoppingCart->id,
+                  'product_id' => $item['id'],
+                  'quantity' => $item['quantity'],
+                  'unit_price' => $item['price'],
+                  'total_price' => $item['price'] * $item['quantity'],
+              ]);
+          }
+          session()->forget('cart');  // مسح السلة من الجلسة بعد نقلها إلى قاعدة البيانات
+      }
+      $cartItems = $shoppingCart->cartItems()->with('product')->get();
+  } else {
+      $cartItems = [];
+      if (!empty(session()->get('cart', []))) {
+          $cartSession = session()->get('cart', []);
+          if (!empty($cartSession)) {
+              $shoppingCart = ShoppingCart::create([
+                  'user_id' => $user->id,
+                  'status' => ShoppingCart::STATUS_OPEN,
+              ]);
+              foreach ($cartSession as $item) {
+                  CartItem::create([
+                      'shopping_cart_id' => $shoppingCart->id,
+                      'product_id' => $item['id'],
+                      'quantity' => $item['quantity'],
+                      'unit_price' => $item['price'],
+                      'total_price' => $item['price'] * $item['quantity'],
+                  ]);
+              }
+              session()->forget('cart');
+          }
+          $cartItems = $shoppingCart->cartItems()->with('product')->get();
+      }
+  }
+
+  // حساب العدد الإجمالي مع الكميات
+  $countcartItems = 0;
+  foreach ($cartItems as $cartItem) {
+      $countcartItems += $cartItem->quantity;  // إضافة الكمية لكل منتج
+  }
+} else {
+  // إذا لم يكن المستخدم مسجل دخول، نعرض السلة من الجلسة
+  $cartItems = session()->get('cart', []);
+  $totalPrice = 0;
+
+  // التكرار عبر السلة لحساب المجموع لكل منتج
+  foreach ($cartItems as $product) {
+      $totalPrice += $product['price'] * $product['quantity'];
+  }
+
+  // حساب العدد الكلي مع الكميات
+  $countcartItems = 0;
+  foreach ($cartItems as $product) {
+      $countcartItems += $product['quantity'];  // إضافة الكمية لكل منتج
+  }
+}
+
+// في النهاية، $countcartItems يحتوي على العدد الإجمالي لجميع المنتجات في السلة مع الكميات
+//dd($countcartItems);
+
+ //عدد السلة
+
+        return view('website.frontend.success',compact('countcartItems'));
 
      }
    }

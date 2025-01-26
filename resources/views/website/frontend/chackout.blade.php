@@ -256,8 +256,8 @@
                                                 </div>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <th scope="row">
+                                       {{-- <tr>
+										<th scope="row">
                                             </th>
                                             <td class="py-5">
                                                 <p class="mb-0 text-dark py-4">Shipping</p>
@@ -290,7 +290,7 @@
                                                     <p class="mb-0 text-dark">$135.00</p>
                                                 </div>
                                             </td>
-                                        </tr>
+                                        </tr>--}}
                                     </tbody>
                                 </table>
                             </div>

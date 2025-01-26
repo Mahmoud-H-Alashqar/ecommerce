@@ -1,5 +1,5 @@
 
-@extends('ControlPanel.layouts.app')
+@extends('ControlPanel.layouts.app_pages')
     @section('content')
 
 	<!--begin::App Main-->

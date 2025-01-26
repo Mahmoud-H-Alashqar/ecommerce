@@ -120,7 +120,7 @@
             
                                         </div>
                                     </div>
-                                    <div class="col-lg-12">
+                                    {{--<div class="col-lg-12">
                                         <div class="mb-3">
                                             <h4 class="mb-2">Price</h4>
                                             <input type="range" class="form-range w-100" id="rangeInput" name="rangeInput" min="0" max="500" value="0" oninput="amount.value=rangeInput.value">
@@ -151,8 +151,8 @@
                                                 <label for="Categories-5"> Expired</label>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-lg-12">
+                                    </div>--}}
+                                    {{--<div class="col-lg-12">
                                         <h4 class="mb-3">Featured products</h4>
                                         <div class="d-flex align-items-center justify-content-start">
                                             <div class="rounded me-4" style="width: 100px; height: 100px;">
@@ -214,7 +214,7 @@
                                         <div class="d-flex justify-content-center my-4">
                                             <a href="#" class="btn border border-secondary px-4 py-3 rounded-pill text-primary w-100">Vew More</a>
                                         </div>
-                                    </div>
+                                    </div>--}}
                                     <div class="col-lg-12">
                                         <div class="position-relative">
                                             <img src="{{ asset('vegetable-website-template/img/banner-fruits.jpg') }}" class="img-fluid w-100 rounded" alt="">
