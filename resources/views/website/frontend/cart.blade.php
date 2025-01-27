@@ -182,7 +182,7 @@
         // الحد من نقص الكمية إذا كانت أقل من 1
         $('.btn-minus').click(function(){
             var productId = $(this).data('product-id');
-          //  alert(productId);
+          //alert(productId);
             var quantity = parseInt($('#quantity-' + productId).val());
             if(quantity > 1) {
                 var newQuantity = quantity - 1;
@@ -218,7 +218,10 @@
                         // يمكنك إضافة ما تود فعله بعد نجاح العملية، مثل عرض رسالة نجاح
                      $('#total-' + productId).text(response.totalPrice + ' $');  // تحديث Total المنتج في الصفحة
                      $('#Subtotal').text(response.all_total + ' $');
-                         $('#Total').text(response.all_total + 3 + ' $');
+                        // $('#Total').text(response.all_total + 3 + ' $');
+                         $('#Total').text(response.all_total + ' $');
+                         $('#catitemscount').text(response.totalItems );
+                         
                     }
                 });
             @else
@@ -238,7 +241,9 @@
                          console.log(totalprice);
                          $('#totalsession-' + productId).text(totalprice + ' $');  // تحديث Total المنتج في الصفحة
                          $('#Subtotal').text(response.total_price + ' $');
-                         $('#Total').text(response.total_price + 3 + ' $');
+                       //  $('#Total').text(response.total_price + 3 + ' $');
+                         $('#Total').text(response.total_price  + ' $');
+                         $('#catitemscount').text(response.totalQuantity);
 
 
                      }

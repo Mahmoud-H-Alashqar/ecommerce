@@ -317,7 +317,11 @@ public function showCart()
  
                  $cartItems =   $cartitem = CartItem::where('shopping_cart_id',$shoppingCart->id)->get();
                  $allTotal = 0;
+                 $totalItems = 0; // لحساب عدد العناصر الإجمالي في السلة
 foreach ($cartItems as $cartItem) {
+        // حساب عدد العناصر بناءً على الكمية
+        $totalItems += $cartItem->quantity; 
+
     $allTotal += $cartItem->quantity * $cartItem->unit_price;
 }
 
@@ -328,6 +332,7 @@ foreach ($cartItems as $cartItem) {
                     'message' => 'Quantity updated successfully',
                     'totalPrice' => $total_price,  // قيمة الـ TotalPrice الخاصة بالمنتج
                     'all_total' => $allTotal, 
+                    'totalItems' => $totalItems, 
                     // 'subtotal' => $subtotal,                // الـ Subtotal لجميع العناصر
                     // 'total' => $total                       // الـ Total النهائي مع الشحن
                 ]);
@@ -365,11 +370,15 @@ foreach ($cartItems as $cartItem) {
         }
 // متغير لتخزين الإجمالي
 $totalPrice = 0;
+$totalQuantity = 0;  // لتخزين عدد العناصر
 
 // التكرار عبر السلة لحساب المجموع لكل منتج
 foreach ($cart as $product) {
     // حساب المجموع لهذا المنتج (السعر × الكمية)
     $totalPrice += $product['price'] * $product['quantity'];
+        // حساب إجمالي عدد العناصر
+        $totalQuantity += $product['quantity'];
+
 }
 
         // تخزين السلة المحدثة في الجلسة
@@ -378,6 +387,7 @@ foreach ($cart as $product) {
         //return response()->json(['message' => 'Cart updated successfully.']);
         return response()->json([
             'total_price' => $totalPrice,
+            'totalQuantity' => $totalQuantity,
             'cart' => $cart,
             'message' => 'Cart updated successfully.'
         ]);
