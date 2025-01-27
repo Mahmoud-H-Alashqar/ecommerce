@@ -34,8 +34,8 @@
                 <!--begin::Small Box Widget 1-->
                 <div class="small-box text-bg-primary">
                   <div class="inner">
-                    <h3>150</h3>
-                    <p>New Orders</p>
+                    <h3>{{$category}}</h3>
+                    <p>Category</p>
                   </div>
                   <svg
                     class="small-box-icon"
@@ -49,7 +49,7 @@
                     ></path>
                   </svg>
                   <a
-                    href="#"
+                    href="{{ route('control_panel_dashboard.categories.index') }}"
                     class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover"
                   >
                     More info <i class="bi bi-link-45deg"></i>
@@ -62,8 +62,8 @@
                 <!--begin::Small Box Widget 2-->
                 <div class="small-box text-bg-success">
                   <div class="inner">
-                    <h3>53<sup class="fs-5">%</sup></h3>
-                    <p>Bounce Rate</p>
+                    <h3>{{$product}}<sup class="fs-5"></sup></h3>
+                    <p>Product</p>
                   </div>
                   <svg
                     class="small-box-icon"
@@ -77,7 +77,7 @@
                     ></path>
                   </svg>
                   <a
-                    href="#"
+                    href="{{ route('control_panel_dashboard.products.index') }}"
                     class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover"
                   >
                     More info <i class="bi bi-link-45deg"></i>
@@ -90,8 +90,8 @@
                 <!--begin::Small Box Widget 3-->
                 <div class="small-box text-bg-warning">
                   <div class="inner">
-                    <h3>44</h3>
-                    <p>User Registrations</p>
+                    <h3>{{$shoppingcart}}</h3>
+                    <p>ShoppingCart</p>
                   </div>
                   <svg
                     class="small-box-icon"
@@ -105,7 +105,7 @@
                     ></path>
                   </svg>
                   <a
-                    href="#"
+                    href="{{ route('control_panel_dashboard.shoppingcarts.index') }}"
                     class="small-box-footer link-dark link-underline-opacity-0 link-underline-opacity-50-hover"
                   >
                     More info <i class="bi bi-link-45deg"></i>
@@ -118,8 +118,8 @@
                 <!--begin::Small Box Widget 4-->
                 <div class="small-box text-bg-danger">
                   <div class="inner">
-                    <h3>65</h3>
-                    <p>Unique Visitors</p>
+                    <h3>{{$order}}</h3>
+                    <p>Order</p>
                   </div>
                   <svg
                     class="small-box-icon"
@@ -140,7 +140,7 @@
                     ></path>
                   </svg>
                   <a
-                    href="#"
+                    href="{{ route('control_panel_dashboard.ordersadmin.index') }}"
                     class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover"
                   >
                     More info <i class="bi bi-link-45deg"></i>
@@ -155,13 +155,13 @@
             <div class="row">
               <!-- Start col -->
               <div class="col-lg-7 connectedSortable">
-                <div class="card mb-4">
+			  {{--<div class="card mb-4">
                   <div class="card-header"><h3 class="card-title">Sales Value</h3></div>
                   <div class="card-body"><div id="revenue-chart"></div></div>
-                </div>
+                </div>--}}
                 <!-- /.card -->
                 <!-- DIRECT CHAT -->
-                <div class="card direct-chat direct-chat-primary mb-4">
+                {{--<div class="card direct-chat direct-chat-primary mb-4">
                   <div class="card-header">
                     <h3 class="card-title">Direct Chat</h3>
                     <div class="card-tools">
@@ -394,12 +394,12 @@
                     </form>
                   </div>
                   <!-- /.card-footer-->
-                </div>
+                </div>--}}
                 <!-- /.direct-chat -->
               </div>
               <!-- /.Start col -->
               <!-- Start col -->
-              <div class="col-lg-5 connectedSortable">
+              {{--<div class="col-lg-5 connectedSortable">
                 <div class="card text-white bg-primary bg-gradient border-primary mb-4">
                   <div class="card-header border-0">
                     <h3 class="card-title">Sales Value</h3>
@@ -434,7 +434,7 @@
                     <!--end::Row-->
                   </div>
                 </div>
-              </div>
+              </div>--}}
               <!-- /.Start col -->
             </div>
             <!-- /.row (main row) -->
