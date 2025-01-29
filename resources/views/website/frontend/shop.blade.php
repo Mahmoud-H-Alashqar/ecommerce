@@ -109,14 +109,14 @@
                                             </ul>
                                                <!-- روابط الترقيم -->
                      <!-- روابط الترقيم -->
-                     <div class="pagination-container">
+                     {{--<div class="pagination-container">
             <nav aria-label="Page navigation">
                 <ul class="pagination justify-content-center">
                     <!-- روابط الترقيم -->
                     {{ $categories->links('pagination::bootstrap-4') }} <!-- رابط الترقيم باستخدام تصميم Bootstrap 4 -->
                 </ul>
             </nav>
-        </div>
+        </div>--}}
             
                                         </div>
                                     </div>

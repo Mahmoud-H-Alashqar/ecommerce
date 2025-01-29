@@ -119,8 +119,8 @@ if (Auth::check()) {
 
      //dd("shop");
     // $categories = Category::all();
-    // $categories = Category::with('products')->get(); // "with('products')" يقوم بتحميل المنتجات المرتبطة بكل فئة
-      $categories = Category::with('products')->paginate(5);
+     $categories = Category::with('products')->get(); // "with('products')" يقوم بتحميل المنتجات المرتبطة بكل فئة
+    //  $categories = Category::with('products')->paginate(5);
     // dd($categories);
 
 //عدد السلة 
