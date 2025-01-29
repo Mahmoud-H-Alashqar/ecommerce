@@ -39,9 +39,9 @@ if (Auth::check()) {
                               ->where('status', ShoppingCart::STATUS_OPEN)
                               ->first();
 
-  if (empty(session()->get('cart', [])) && $shoppingCart == null ) {
-      return redirect()->route('shop');
-  }
+//   if (empty(session()->get('cart', [])) && $shoppingCart == null ) {
+//       return redirect()->route('shop');
+//   }
 
   if ($shoppingCart) {
       $cartSession = session()->get('cart', []);
