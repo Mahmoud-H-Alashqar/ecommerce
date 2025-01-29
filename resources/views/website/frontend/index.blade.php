@@ -508,7 +508,7 @@
 
 
         <!-- Banner Section Start-->
-        <div class="container-fluid banner bg-secondary my-5">
+        {{--<div class="container-fluid banner bg-secondary my-5">
             <div class="container py-5">
                 <div class="row g-4 align-items-center">
                     <div class="col-lg-6">
@@ -533,12 +533,12 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>--}}
         <!-- Banner Section End -->
 
 
         <!-- Bestsaler Product Start -->
-        <div class="container-fluid py-5">
+        {{--<div class="container-fluid py-5">
             <div class="container py-5">
                 <div class="text-center mx-auto mb-5" style="max-width: 700px;">
                     <h1 class="display-4">Bestseller Products</h1>
@@ -741,7 +741,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>--}}
         <!-- Bestsaler Product End -->
 
 
@@ -786,7 +786,7 @@
 
 
         <!-- Tastimonial Start -->
-        <div class="container-fluid testimonial py-5">
+        {{--<div class="container-fluid testimonial py-5">
             <div class="container py-5">
                 <div class="testimonial-header text-center">
                     <h4 class="text-primary">Our Testimonial</h4>
@@ -870,7 +870,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>--}}
         <!-- Tastimonial End -->
         @endsection
 <script>
