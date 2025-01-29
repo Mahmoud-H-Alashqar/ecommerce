@@ -221,7 +221,7 @@
                   class="user-image rounded-circle shadow"
                   alt="User Image"
                 />
-                <span class="d-none d-md-inline">Alexander Pierce</span>
+                <span class="d-none d-md-inline">{{ Auth::user()->name }}</span>
               </a>
               <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
                 <!--begin::User Image-->
@@ -232,7 +232,7 @@
                     alt="User Image"
                   />
                   <p>
-                    Alexander Pierce - Web Developer
+                  {{ Auth::user()->name }}
                     <small>Member since Nov. 2023</small>
                   </p>
                 </li>
@@ -240,19 +240,24 @@
                 <!--begin::Menu Body-->
                 <li class="user-body">
                   <!--begin::Row-->
-                  <div class="row">
-                    <div class="col-4 text-center"><a href="#">Followers</a></div>
-                    <div class="col-4 text-center"><a href="#">Sales</a></div>
-                    <div class="col-4 text-center"><a href="#">Friends</a></div>
-                  </div>
+                  <form method="POST" action="{{ route('logout') }}">
+                  @csrf
+                 <div class="row">
+                    <div class="col-4 text-center"><a href="#"> </a></div>
+                  
+                    <div class="col-4 text-center"><a href="route('logout')"onclick="event.preventDefault();this.closest('form').submit();">Sign out</a></div>
+                   
+                    <div class="col-4 text-center"><a href="#"> </a></div>
+                  </div> 
+                  </form>
                   <!--end::Row-->
                 </li>
                 <!--end::Menu Body-->
                 <!--begin::Menu Footer-->
-                <li class="user-footer">
+                {{--<li class="user-footer">
                   <a href="#" class="btn btn-default btn-flat">Profile</a>
                   <a href="#" class="btn btn-default btn-flat float-end">Sign out</a>
-                </li>
+                </li>--}}
                 <!--end::Menu Footer-->
               </ul>
             </li>
