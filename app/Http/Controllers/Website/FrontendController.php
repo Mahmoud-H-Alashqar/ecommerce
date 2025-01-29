@@ -288,7 +288,7 @@ if (Auth::check()) {
 
  // dd($id);
        // $products =  Product::where('category_id',$id)->get();
-        $products =  Product::where('category_id',$id)->paginate(9);
+        $products =  Product::where('category_id',$id)->paginate(6);
 
      //   dd($products);
      $categories = Category::with('products')->paginate(5);
