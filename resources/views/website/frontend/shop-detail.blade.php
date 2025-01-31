@@ -122,7 +122,7 @@
                                 </div>--}}
                                 <a href="{{ route('cart.add', $product->id) }}" class="btn border border-secondary rounded-pill px-4 py-2 mb-4 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
                             </div>
-                            <div class="col-lg-12">
+                            {{--<div class="col-lg-12">
                                 <nav>
                                     <div class="nav nav-tabs mb-3">
                                         <button class="nav-link active border-white border-bottom-0" type="button" role="tab"
@@ -231,8 +231,8 @@
                                             Clita erat ipsum et lorem et sit</p>
                                     </div>
                                 </div>
-                            </div>
-                            <form action="#">
+                            </div>--}}
+                            {{--<form action="#">
                                 <h4 class="mb-5 fw-bold">Leave a Reply</h4>
                                 <div class="row g-4">
                                     <div class="col-lg-6">
@@ -266,7 +266,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </form>
+                            </form>--}}
                         </div>
                     </div>
                     <div class="col-lg-4 col-xl-3">
@@ -305,7 +305,7 @@
                             
                                 </div>
                             </div>
-                            <div class="col-lg-12">
+                            {{--<div class="col-lg-12">
                                 <h4 class="mb-4">Featured products</h4>
                                 <div class="d-flex align-items-center justify-content-start">
                                     <div class="rounded" style="width: 100px; height: 100px;">
@@ -424,7 +424,7 @@
                                 <div class="d-flex justify-content-center my-4">
                                     <a href="#" class="btn border border-secondary px-4 py-3 rounded-pill text-primary w-100">Vew More</a>
                                 </div>
-                            </div>
+                            </div>--}}
                             <div class="col-lg-12">
                                 <div class="position-relative">
                                     <img src="{{asset('vegetable-website-template/img/banner-fruits.jpg') }}" class="img-fluid w-100 rounded" alt="">
@@ -436,7 +436,7 @@
                         </div>
                     </div>
                 </div>
-                <h1 class="fw-bold mb-0">Related products</h1>
+                {{--<h1 class="fw-bold mb-0">Related products</h1>
                 <div class="vesitable">
                     <div class="owl-carousel vegetable-carousel justify-content-center">
                         <div class="border border-primary rounded position-relative vesitable-item">
@@ -552,7 +552,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>--}}
             </div>
         </div>
         <!-- Single Product End -->

@@ -270,7 +270,7 @@
             <p>{{ $product->description }}</p>
             <div class="d-flex justify-content-between flex-lg-wrap">
                 <p class="text-dark fs-5 fw-bold mb-0">${{ $product->price }}  </p>
-                <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary">
+                <a href="{{ route('cart.add', $product->id) }}" class="btn border border-secondary rounded-pill px-3 text-primary">
                     <i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart
                 </a>
             </div>
@@ -309,7 +309,7 @@
                         <p>{{ $product->description }}</p>
                         <div class="d-flex justify-content-between flex-lg-wrap">
                             <p class="text-dark fs-5 fw-bold mb-0">${{ $product->price }}  </p>
-                            <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary">
+                            <a href="{{ route('cart.add', $product->id) }}" class="btn border border-secondary rounded-pill px-3 text-primary">
                                 <i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart
                             </a>
                         </div>
@@ -582,7 +582,7 @@
                                         <i class="fas fa-star"></i>
                                     </div>
                                     <h4 class="mb-3">3.12 $</h4>
-                                    <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                                    <a href="{{ route('cart.add', $product->id) }}" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
                                 </div>
                             </div>
                         </div>
