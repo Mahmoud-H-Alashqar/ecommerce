@@ -16,6 +16,7 @@ use App\Http\Controllers\Website\CheckoutController;
 use App\Http\Controllers\ControlPanel\ShoppingCartController;
 use App\Http\Controllers\ControlPanel\OrderController;
 use App\Http\Controllers\ControlPanel\SliderController;
+//use App\Http\Middleware\Admin;
 
 
 
@@ -71,7 +72,10 @@ Route::prefix('control_panel_dashboard')->name('control_panel_dashboard.')->midd
     Route::post('/orders', [OrderController::class, 'store'])->name('orders');
     Route::get('/success', [OrderController::class, 'success'])->name('success');
 
-    
+     Route::middleware('admin')->group(function () {
+       // Route::get('/control_panel_dashboard', [DashboardController::class, 'index'])->name('control_panel_dashboard');
+
+
     Route::get('users/create', [UserController::class, 'create'])->name('users.create');
 
     Route::get('permissions', [PermissionController::class, 'index'])->name('permissions.index');
@@ -173,7 +177,7 @@ Route::delete('/cartitems/{itemId}/remove', [ShoppingCartController::class, 'rem
 Route::post('/update-quantity', [ShoppingCartController::class, 'updateQuantity'])->name('update-quantity');
 Route::delete('/delete-item/{id}', [ShoppingCartController::class, 'destroy'])->name('delete-item');
 
- 
+});
 });
 
 
@@ -186,7 +190,10 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/control_panel_dashboard', [DashboardController::class, 'index'])->name('control_panel_dashboard');
+    Route::middleware('admin')->group(function () {
+
+   Route::get('/control_panel_dashboard', [DashboardController::class, 'index'])->name('control_panel_dashboard');
+});
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
